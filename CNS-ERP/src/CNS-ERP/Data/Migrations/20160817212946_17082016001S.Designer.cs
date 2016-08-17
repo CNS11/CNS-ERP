@@ -8,9 +8,10 @@ using CNS_ERP.Data;
 namespace CNS_ERP.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160817212946_17082016001S")]
+    partial class _17082016001S
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
@@ -29,8 +30,6 @@ namespace CNS_ERP.Data.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.Property<bool>("EmailConfirmed");
-
-                    b.Property<int?>("InformacjeUzytkownikaId");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -57,8 +56,6 @@ namespace CNS_ERP.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InformacjeUzytkownikaId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
 
@@ -83,12 +80,18 @@ namespace CNS_ERP.Data.Migrations
                     b.Property<string>("Nazwisko")
                         .IsRequired();
 
+                    b.Property<string>("PracownikRefLogin")
+                        .IsRequired();
+
                     b.Property<int>("Stanowisko");
 
                     b.Property<string>("Ulica")
                         .IsRequired();
 
                     b.HasKey("InformacjeUzytkownikaId");
+
+                    b.HasIndex("PracownikRefLogin")
+                        .IsUnique();
 
                     b.ToTable("InformacjeUzytkownikaDbSet");
                 });
@@ -200,11 +203,12 @@ namespace CNS_ERP.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("CNS_ERP.Models.ApplicationUser", b =>
+            modelBuilder.Entity("CNS_ERP.Models.InformacjeUzytkownika", b =>
                 {
-                    b.HasOne("CNS_ERP.Models.InformacjeUzytkownika", "informacjeUzytkownika")
-                        .WithMany()
-                        .HasForeignKey("InformacjeUzytkownikaId");
+                    b.HasOne("CNS_ERP.Models.ApplicationUser", "Pracownik")
+                        .WithOne("informacjeUzytkownika")
+                        .HasForeignKey("CNS_ERP.Models.InformacjeUzytkownika", "PracownikRefLogin")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

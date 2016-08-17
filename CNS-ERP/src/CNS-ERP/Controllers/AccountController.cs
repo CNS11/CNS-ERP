@@ -62,7 +62,7 @@ namespace CNS_ERP.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation(1, "User logged in.");
+                    _logger.LogInformation(1, "Użytkownik zalogował się.");
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -71,7 +71,7 @@ namespace CNS_ERP.Controllers
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning(2, "User account locked out.");
+                    _logger.LogWarning(2, "Konto użytkownika zablokowane.");
                     return View("Lockout");
                 }
                 else
@@ -105,7 +105,8 @@ namespace CNS_ERP.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                InformacjeUzytkownika _informacjeUzytkownika = new InformacjeUzytkownika { Imie = model.Imie, Nazwisko = model.Nazwisko, Miasto = model.Miasto, Ulica = model.Ulica };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,informacjeUzytkownika=_informacjeUzytkownika};
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -133,7 +134,7 @@ namespace CNS_ERP.Controllers
         public async Task<IActionResult> LogOff()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation(4, "User logged out.");
+            _logger.LogInformation(4, "Użytkownik wylogował się.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 

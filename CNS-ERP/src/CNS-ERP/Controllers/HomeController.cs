@@ -31,5 +31,11 @@ namespace CNS_ERP.Controllers
         {
             return View();
         }
+        public IActionResult Map()
+        {
+            ViewBag.Message = "Mapa";
+
+            return View();
+        }
     }
 }

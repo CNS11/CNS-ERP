@@ -1,12 +1,12 @@
 ﻿@model RegisterViewModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Zarejestruj się!";
 }
 
 <h2>@ViewData["Title"].</h2>
 
 <form asp-controller="Account" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-    <h4>Create a new account.</h4>
+    <h4>Utwórz nowe konto.</h4>
     <hr />
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-group">
@@ -28,6 +28,41 @@
         <div class="col-md-10">
             <input asp-for="ConfirmPassword" class="form-control" />
             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Imie" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Imie" class="form-control" />
+            <span asp-validation-for="Imie" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Nazwisko" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Nazwisko" class="form-control" />
+            <span asp-validation-for="Nazwisko" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Miasto" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Miasto" class="form-control" />
+            <span asp-validation-for="Miasto" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Ulica" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Ulica" class="form-control" />
+            <span asp-validation-for="Ulica" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label asp-for="Stanowisko" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Stanowisko" class="form-control" />
+            <span asp-validation-for="Stanowisko" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group">
