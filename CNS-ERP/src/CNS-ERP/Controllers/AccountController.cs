@@ -11,6 +11,9 @@ using Microsoft.Extensions.Logging;
 using CNS_ERP.Models;
 using CNS_ERP.Models.AccountViewModels;
 using CNS_ERP.Services;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using CNS_ERP.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CNS_ERP.Controllers
 {
@@ -18,10 +21,12 @@ namespace CNS_ERP.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly RoleManager<Ide> _roleManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        //ApplicationDbContext db = new ApplicationDbContext(new ApplicationUser());
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -436,6 +441,9 @@ namespace CNS_ERP.Controllers
                 return View(model);
             }
         }
+        [Authorize]
+
+
 
         #region Helpers
 

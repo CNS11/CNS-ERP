@@ -4426,6 +4426,9 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
+      },
+      "VS2012-Javascript-Intellisense/1.0.712.2147": {
+        "type": "package"
       }
     }
   },
@@ -11126,6 +11129,22 @@
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
       ]
+    },
+    "VS2012-Javascript-Intellisense/1.0.712.2147": {
+      "sha512": "0rXPlzyOtL/ckoLAAjH1zZE+mnyV54bYpO4go7Es9VF1+So/IP20FCdjs0nlhNsToeeafOmvwhV9X/+dq4S0WQ==",
+      "type": "package",
+      "path": "VS2012-Javascript-Intellisense/1.0.712.2147",
+      "files": [
+        "VS2012-Javascript-Intellisense.1.0.712.2147.nupkg.sha512",
+        "VS2012-Javascript-Intellisense.nuspec",
+        "content/scripts/NamespacesAndEnumSupport.js.pp",
+        "content/scripts/_references.js.pp",
+        "content/scripts/_vs2012.intellisense.Test.js.pp",
+        "content/scripts/_vs2012.intellisense.js.pp",
+        "tools/init.ps1",
+        "tools/install.ps1",
+        "tools/uninstall.ps1"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -11153,7 +11172,8 @@
       "Microsoft.NETCore.App >= 1.0.0",
       "Microsoft.VisualStudio.Web.BrowserLink.Loader >= 14.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Tools >= 1.0.0-preview2-final",
-      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 1.0.0-preview2-final"
+      "Microsoft.VisualStudio.Web.CodeGenerators.Mvc >= 1.0.0-preview2-final",
+      "VS2012-Javascript-Intellisense >= 1.0.712.2147"
     ],
     ".NETCoreApp,Version=v1.0": []
   },

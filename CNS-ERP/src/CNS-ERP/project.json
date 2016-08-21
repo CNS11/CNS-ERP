@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-CNS_ERP-c048fe26-d25c-407d-898c-fde30d542c30",
 
   "dependencies": {
@@ -40,10 +40,11 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "VS2012-Javascript-Intellisense": "1.0.712.2147"
   },
 
   "tools": {

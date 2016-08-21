@@ -24,5 +24,8 @@ namespace CNS_ERP.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
         public DbSet<InformacjeUzytkownika> InformacjeUzytkownikaDbSet { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
+
+     //   public DbSet<ApplicationRole> IdentityRole { get; set; }
     }
 }

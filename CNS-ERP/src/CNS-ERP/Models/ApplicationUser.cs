@@ -11,4 +11,7 @@ namespace CNS_ERP.Models
     {
         public virtual InformacjeUzytkownika informacjeUzytkownika { get; set; }
     }
+    public class ApplicationRole : IdentityRole
+    {
+    }
 }
