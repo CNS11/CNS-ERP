@@ -89,20 +89,20 @@
                 }
             });
     }
-    function dajUzytkownikowDlaRoli(RoleName) {
-        e.preventDefault();
-        var data = [];
-        $.getJSON("/ApplicationRoles/DajUzytkownikowDlaRoli", { groupName: RoleName },
-    function (data) {
+    //function dajUzytkownikowDlaRoli(RoleName) {
+    //    e.preventDefault();
+    //    var data = [];
+    //    $.getJSON("/ApplicationRoles/DajUzytkownikowDlaRoli", { groupName: RoleName },
+    //function (data) {
 
-        alert(data);
-        data = $.map(data, function (item, a) {
-           // return "<option value=" + item.NazwaModelu + ">" + item.NazwaModelu + "</option>";
-            // return "<div id="+item.UserName+"class=draggable drag-drop yes-drop><p>"+item.UserName+"</p></div>"
-            print ("<p>"+ item + "</p>");
-        });
-    });
-    }
+    //    alert(data);
+    //    data = $.map(data, function (item, a) {
+    //       // return "<option value=" + item.NazwaModelu + ">" + item.NazwaModelu + "</option>";
+    //        // return "<div id="+item.UserName+"class=draggable drag-drop yes-drop><p>"+item.UserName+"</p></div>"
+    //        print ("<p>"+ item + "</p>");
+    //    });
+    //});
+    //}
 
 
 </script>
@@ -171,12 +171,15 @@
 }
     <br  style="color:black"/>
 
-    @foreach (var rola in ViewBag.Role)
+    @foreach (var item in ViewBag.roleUzytkownicy)
     {
-     <div id=@rola.Name class="dropzone">@rola.Name
-         <script type="text/javascript">
-             dajUzytkownikowDlaRoli(@rola.Name);
-         </script>
+     <div id=@item.rola class="dropzone">@item.rola
+    @foreach (var users in item.uzytkownicy)
+    {
+        <div id=@users.UserName class="draggable drag-drop yes-drop">
+            @users.UserName
+            </div>
+        }
     </div>
      <br />
     }

@@ -15,6 +15,7 @@ namespace CNS_ERP.Controllers
     public class ApplicationRolesController : Controller
     {
         private readonly ApplicationDbContext _context;
+       // public Tuple<IdentityRole, List<ApplicationUser>> roleIuzytkownicy;
 
         public ApplicationRolesController(ApplicationDbContext context)
         {
@@ -150,11 +151,29 @@ namespace CNS_ERP.Controllers
             return _context.Roles.Any(e => e.Id == id);
         }
         [HttpGet]
+        
         public IActionResult ManageUsersInGroups()
         {
             IEnumerable<ApplicationUser> users = _context.Users.ToList();
             IEnumerable<IdentityRole> roles = _context.Roles.ToList();
-            ViewBag.Role = roles;
+            List<RoleAndUsers> roleUzytkownicy = new List<RoleAndUsers>();
+            foreach (var item in roles)
+            {
+                roleUzytkownicy.Add(new RoleAndUsers
+                {
+                    rola = item,
+                    uzytkownicy = (from role in _context.Roles
+                                  join roleuzytkownicy in _context.UserRoles
+                                  on role.Id equals roleuzytkownicy.RoleId
+                                  join uzytkownicy in _context.Users on roleuzytkownicy.UserId
+                                  equals uzytkownicy.Id where role.Id== item.Id
+                                   select uzytkownicy).ToList(),
+
+
+                });
+            }
+            
+            ViewBag.roleUzytkownicy = roleUzytkownicy;
             return View(users);
         }
 
@@ -195,6 +214,15 @@ namespace CNS_ERP.Controllers
             string roleID = rolefromDatabase.Id;
             var userRolesfromDatabase = _context.UserRoles.Where(u => u.RoleId == groupName).ToList();
             return Json(userRolesfromDatabase);
+        }
+        public class RoleAndUsers
+        {
+            public IdentityRole rola;
+            public IEnumerable<ApplicationUser> uzytkownicy;
+            public RoleAndUsers()
+            {
+
+            }
         }
     }
 }
