@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using CNSS_ERP.DAL.Models;
 using CNSS_ERP.DAL.Models.Sales;
+using CNSS_ERP.DAL.Models.Storage;
+using CNSS_ERP.DAL.Models.Purchase;
 
 namespace CNSS_ERP.DAL
 {
@@ -28,8 +30,15 @@ namespace CNSS_ERP.DAL
         public DbSet<Pay_methodsreceipt> Pay_methodsreceiptDbSet { get; set; }
         public DbSet<Receipt_positions> Receipt_positionsDbSet { get; set; }
         public DbSet<Sales_invoices> Sales_invoicesDbSet { get; set; }
-        public DbSet<Sales_Receipts> Sales_ReceiptsDbSet { get; set; }
-        public DbSet<Tax_rates> Tax_ratesDbSet { get; set; }
+        public DbSet<Sales_receipts> Sales_ReceiptsDbSet { get; set; }
+        public DbSet<Products> ProductsDbSet { get; set; }
+        public DbSet<Units> UnitsDbSet { get; set; }
+        public DbSet<UnitConversions> UnitConversionsDbSet { get; set; }
+        public DbSet<Purchase_documents> Purchase_documentsDbSet { get; set; }
+        public DbSet<Purchase_positions> Purchase_positionsDbSet { get; set; }
+
+        public DbSet<Product_categories> Product_categoriesDbSet { get; set; }
+
 
         #endregion
         //   public DbSet<ApplicationRole> IdentityRole { get; set; }

@@ -1,21 +1,32 @@
-﻿using System;
+﻿using CNSS_ERP.DAL.Models.Sales;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CNSS_ERP.DAL.Models.Sales
+namespace CNSS_ERP.DAL.Models.Purchase
 {
-    public class Sales_receipts
+    public class Purchase_documents
     {
         [Key]
-        public string Sales_receiptId { get; set; }
+        public string Sales_invoiceId { get; set; }
+
+
+        [Required]
+        public string CustomersRefId { get; set; }
+
+        [Required]
+        [ForeignKey("CustomersRefId")]
+        public virtual Customers Customer { get; set; }
         [DataType(DataType.DateTime)]
         [Required]
         public DateTime Creation_date { get; set; }
+
         [DataType(DataType.DateTime)]
-        public DateTime Print_date { get; set; }
+        [Required]
+        public DateTime Payment_date { get; set; }
 
         [Required]
         [DataType(DataType.Currency)]
@@ -30,16 +41,10 @@ namespace CNSS_ERP.DAL.Models.Sales
         public Decimal Gross_value { get; set; }
 
         [Required]
-        public bool Is_fiscalized { get; set; }
-
-        [Required]
         public string Pay_methodsRefId { get; set; }
 
         [Required]
         [ForeignKey("Pay_methodsRefId")]
-        public virtual Pay_methodsreceipt Pay_method { get; set; }
-
-
+        public virtual Pay_methodsinvoice Pay_method { get; set; }
     }
-
 }

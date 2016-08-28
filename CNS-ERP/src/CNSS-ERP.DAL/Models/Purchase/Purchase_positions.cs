@@ -1,24 +1,22 @@
-﻿using CNSS_ERP.DAL.Models.Storage;
+﻿using CNSS_ERP.DAL.Models.Sales;
+using CNSS_ERP.DAL.Models.Storage;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace CNSS_ERP.DAL.Models.Sales
+namespace CNSS_ERP.DAL.Models.Purchase
 {
-    public class Receipt_positions
+    public class Purchase_positions
     {
         [Key]
-        public int Receipt_positionsId { get; set; }
+        public int Purchase_positionsId { get; set; }
 
         [Required]
-        public string Sales_receiptsRefId { get; set; }
+        public string Purchase_documentsRefId { get; set; }
 
         [Required]
-        [ForeignKey("Sales_receiptsRefId")]
-        public virtual Sales_receipts Sales_receipt { get; set; }
+        [ForeignKey("Purchase_documentsRefId")]
+        public virtual Purchase_documents Purchase_document { get; set; }
 
         [Required]
         public string ProductsRefId { get; set; }
