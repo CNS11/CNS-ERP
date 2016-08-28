@@ -4429,6 +4429,27 @@
       },
       "VS2012-Javascript-Intellisense/1.0.712.2147": {
         "type": "package"
+      },
+      "CNSS-ERP.DAL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v1.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Design": "1.0.0-preview2-final",
+          "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Tools": "1.0.0-preview2-final",
+          "NETStandard.Library": "1.6.0",
+          "System.ComponentModel.Annotations": "4.1.0"
+        },
+        "compile": {
+          "netcoreapp1.0/CNSS-ERP.DAL.dll": {}
+        },
+        "runtime": {
+          "netcoreapp1.0/CNSS-ERP.DAL.dll": {}
+        }
       }
     }
   },
@@ -11145,10 +11166,16 @@
         "tools/install.ps1",
         "tools/uninstall.ps1"
       ]
+    },
+    "CNSS-ERP.DAL/1.0.0": {
+      "type": "project",
+      "path": "../CNSS-ERP.DAL/project.json",
+      "msbuildProject": "../CNSS-ERP.DAL/CNSS-ERP.DAL.xproj"
     }
   },
   "projectFileDependencyGroups": {
     "": [
+      "CNSS-ERP.DAL >= 1.0.0-*",
       "Microsoft.ApplicationInsights.AspNetCore >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.Cookies >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics >= 1.0.0",
@@ -11228,23 +11255,6 @@
           "lib/netcoreapp1.0/dotnet-publish-iis.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/1.0.0-preview2-final": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.DotNet.Cli.Utils": "1.0.0-preview2-003121",
-          "Microsoft.DotNet.ProjectModel": "1.0.0-rc3-003121",
-          "Microsoft.EntityFrameworkCore.Design": "1.0.0-preview2-final",
-          "Microsoft.Extensions.CommandLineUtils": "1.0.0",
-          "Microsoft.NETCore.App": "1.0.0",
-          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0"
-        },
-        "compile": {
-          "lib/netcoreapp1.0/dotnet-ef.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp1.0/dotnet-ef.dll": {}
-        }
-      },
       "Microsoft.Extensions.SecretManager.Tools/1.0.0-preview2-final": {
         "type": "package",
         "dependencies": {
@@ -11283,7 +11293,6 @@
       "BundlerMinifier.Core >= 2.0.238",
       "Microsoft.AspNetCore.Razor.Tools >= 1.0.0-preview2-final",
       "Microsoft.AspNetCore.Server.IISIntegration.Tools >= 1.0.0-preview2-final",
-      "Microsoft.EntityFrameworkCore.Tools >= 1.0.0-preview2-final",
       "Microsoft.Extensions.SecretManager.Tools >= 1.0.0-preview2-final",
       "Microsoft.VisualStudio.Web.CodeGeneration.Tools >= 1.0.0-preview2-final"
     ]

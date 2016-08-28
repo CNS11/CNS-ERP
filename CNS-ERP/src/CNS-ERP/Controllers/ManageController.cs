@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CNS_ERP.Models;
-using CNS_ERP.Models.ManageViewModels;
 using CNS_ERP.Services;
+using CNSS_ERP.DAL.Models.ManageViewModels;
+using CNSS_ERP.DAL.Models;
 
 namespace CNS_ERP.Controllers
 {

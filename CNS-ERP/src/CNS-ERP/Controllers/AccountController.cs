@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -8,12 +6,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using CNS_ERP.Models;
-using CNS_ERP.Models.AccountViewModels;
 using CNS_ERP.Services;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using CNS_ERP.Data;
-using Microsoft.EntityFrameworkCore;
+using CNSS_ERP.DAL.Models.AccountViewModels;
+using CNSS_ERP.DAL.Models;
 
 namespace CNS_ERP.Controllers
 {
@@ -110,8 +105,8 @@ namespace CNS_ERP.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                InformacjeUzytkownika _informacjeUzytkownika = new InformacjeUzytkownika { Imie = model.Imie, Nazwisko = model.Nazwisko, Miasto = model.Miasto, Ulica = model.Ulica };
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,informacjeUzytkownika=_informacjeUzytkownika};
+                UserAdditionalInfos _userAdditionalInfos = new UserAdditionalInfos { Name = model.Imie, Surname = model.Nazwisko, City = model.Miasto, Street = model.Ulica };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, userAdditionalInfos= _userAdditionalInfos };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
