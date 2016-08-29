@@ -15,11 +15,11 @@ namespace CNSS_ERP.DAL.Models.Purchase
 
 
         [Required]
-        public string CustomersRefId { get; set; }
+        public string ContractorsRefId { get; set; }
 
         [Required]
-        [ForeignKey("CustomersRefId")]
-        public virtual Customers Customer { get; set; }
+        [ForeignKey("ContractorsRefId")]
+        public virtual Contractors Contractor { get; set; }
         [DataType(DataType.DateTime)]
         [Required]
         public DateTime Creation_date { get; set; }

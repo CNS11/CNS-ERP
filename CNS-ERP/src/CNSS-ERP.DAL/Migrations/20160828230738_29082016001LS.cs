@@ -89,7 +89,7 @@ namespace CNSSERP.DAL.Migrations
                         column: x => x.Master_product_categoryRefId,
                         principalTable: "Product_categoriesDbSet",
                         principalColumn: "Product_categoriesId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -263,7 +263,7 @@ namespace CNSSERP.DAL.Migrations
                         column: x => x.Units_2RefId,
                         principalTable: "UnitsDbSet",
                         principalColumn: "UnitId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -302,13 +302,13 @@ namespace CNSSERP.DAL.Migrations
                         column: x => x.Tax_ratesRefId,
                         principalTable: "Tax_rates",
                         principalColumn: "Tax_ratesId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Purchase_positionsDbSet_UnitsDbSet_UnitsRefId",
                         column: x => x.UnitsRefId,
                         principalTable: "UnitsDbSet",
                         principalColumn: "UnitId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -347,13 +347,13 @@ namespace CNSSERP.DAL.Migrations
                         column: x => x.Tax_ratesRefId,
                         principalTable: "Tax_rates",
                         principalColumn: "Tax_ratesId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Receipt_positionsDbSet_UnitsDbSet_UnitsRefId",
                         column: x => x.UnitsRefId,
                         principalTable: "UnitsDbSet",
                         principalColumn: "UnitId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.AddColumn<int>(

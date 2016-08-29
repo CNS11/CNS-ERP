@@ -7,21 +7,29 @@ using System.Threading.Tasks;
 
 namespace CNSS_ERP.DAL.Models.Storage
 {
-    public class ProductImages
+    public class ProductStorages
     {
+        [Key]
+        public int ProductStoragesId { get; set; }
+
 
         [Required]
-        [Key]
-        public int ProductImagesId { get; set; }
+        public string ProductsRefId { get; set; }
+
         [Required]
-        public byte[] Image { get; set; }
-        [Required]
-        public int ProductsRefId { get; set; }
         [ForeignKey("ProductsRefId")]
         public virtual Products Product { get; set; }
 
-        [DataType(DataType.DateTime)]
-        public DateTime Uploaded_date { get; set; }
+        [Required]
+        public Decimal Quantity { get; set; }
+        [Required]
+        public string UnitsRefId { get; set; }
+
+        [Required]
+        [ForeignKey("UnitsRefId")]
+        public virtual Units Unit { get; set; }
+
+
 
     }
 }
