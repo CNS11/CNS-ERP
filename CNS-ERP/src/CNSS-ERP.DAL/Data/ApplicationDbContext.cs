@@ -38,7 +38,8 @@ namespace CNSS_ERP.DAL
         public DbSet<Purchase_positions> Purchase_positionsDbSet { get; set; }
 
         public DbSet<Product_categories> Product_categoriesDbSet { get; set; }
-
+        
+        public DbSet<Tax_rates> Tax_ratesDbSet { get; set; }
 
         #endregion
         //   public DbSet<ApplicationRole> IdentityRole { get; set; }
