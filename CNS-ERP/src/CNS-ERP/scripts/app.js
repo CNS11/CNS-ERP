@@ -1,31 +1,35 @@
-﻿
-(function () {
-    'use strict';
+﻿//Define an angular module for our app
+var sampleApp = angular.module('sampleApp', []);
 
-    config.$inject = ['$routeProvider', '$locationProvider'];
+//Define Routing for app
+//Uri /AddNewOrder -> template add_order.html and Controller AddOrderController
+//Uri /ShowOrders -> template show_orders.html and Controller AddOrderController
+sampleApp.config(['$routeProvider',
+  function ($routeProvider) {
+      $routeProvider.
+        when('/AddNewOrder', {
+            templateUrl: 'templates/add_order.html',
+            controller: 'AddOrderController'
+        }).
+        when('/ShowOrders', {
+            templateUrl: 'templates/show_orders.html',
+            controller: 'ShowOrdersController'
+        }).
+        otherwise({
+            redirectTo: '/AddNewOrder'
+        });
+  }]);
 
-    var app = angular.module('moviesApp', []);
-    app.config(['$routeProvider',
-                function ($routeProvider) {
-                    $routeProvider.
-                    when('/', {
-                        templateUrl: '/Views/list.html',
-                        controller: 'MoviesListController'
-                    })
-                    .when('/movies/add', {
-                        templateUrl: '/Views/add.html',
-                        controller: 'MoviesAddController'
-                    })
-                    .when('/movies/edit/:id', {
-                        templateUrl: '/Views/edit.html',
-                        controller: 'MoviesEditController'
-                    })
-                    .when('/movies/delete/:id', {
-                        templateUrl: '/Views/delete.html',
-                        controller: 'MoviesDeleteController'
-                    });
-                }]);
 
-    app.controller('MoviesListController', function ($scope) {
-    });
+sampleApp.controller('AddOrderController', function ($scope) {
+
+    $scope.message = 'This is Add new order screen';
+
+});
+
+
+sampleApp.controller('ShowOrdersController', function ($scope) {
+
+    $scope.message = 'This is Show orders screen';
+
 });
