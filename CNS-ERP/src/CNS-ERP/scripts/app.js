@@ -1,35 +1,36 @@
-﻿//Define an angular module for our app
-var sampleApp = angular.module('sampleApp', []);
+﻿(function () {
+    'use strict';
 
-//Define Routing for app
-//Uri /AddNewOrder -> template add_order.html and Controller AddOrderController
-//Uri /ShowOrders -> template show_orders.html and Controller AddOrderController
-sampleApp.config(['$routeProvider',
-  function ($routeProvider) {
-      $routeProvider.
-        when('/AddNewOrder', {
-            templateUrl: 'templates/add_order.html',
-            controller: 'AddOrderController'
-        }).
-        when('/ShowOrders', {
-            templateUrl: 'templates/show_orders.html',
-            controller: 'ShowOrdersController'
-        }).
-        otherwise({
-            redirectTo: '/AddNewOrder'
-        });
-  }]);
+    config.$inject = ['$routeProvider', '$locationProvider'];
 
+    angular.module('CNSS-App', [
+        'ngRoute', 'StoragesServices'
+    ]).config(config)
+        
+    function config($routeProvider, $locationProvider) {
+        $routeProvider
+            .when('/', {
+                templateUrl: '/Views/Storages/list.html',
+                controller: 'storagesListController'
+            })
+            .when('/storages/list', {
+                templateUrl: '/Views/Storages/list.html',
+                controller: 'storagesListController'
+            })
+            .when('/storages/add', {
+                templateUrl: '/Views/Storages/add.html',
+                controller: 'storagesAddController'
+            })
+            .when('/storages/edit/:id', {
+                templateUrl: '/Views/Storages/edit.html',
+                controller: 'storagesEditController'
+            })
+            .when('/storages/delete/:id', {
+                templateUrl: '/Views/Storages/delete.html',
+                controller: 'storagesDeleteController'
+            });
 
-sampleApp.controller('AddOrderController', function ($scope) {
+        $locationProvider.html5Mode(true);
+    }
 
-    $scope.message = 'This is Add new order screen';
-
-});
-
-
-sampleApp.controller('ShowOrdersController', function ($scope) {
-
-    $scope.message = 'This is Show orders screen';
-
-});
+})();

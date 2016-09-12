@@ -8,6 +8,9 @@ using Microsoft.Extensions.Logging;
 using CNS_ERP.Services;
 using CNSS_ERP.DAL;
 using CNSS_ERP.DAL.Models;
+using CNS_ERP.Interfaces;
+using CNS_ERP.Repos.Storage;
+using CNSS_ERP.DAL.Models.Storage;
 
 namespace CNS_ERP
 {
@@ -46,6 +49,7 @@ namespace CNS_ERP
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            services.AddSingleton<IRepository<Storages>, StoragesRepository>();
 
             services.AddMvc();
 
@@ -81,7 +85,12 @@ namespace CNS_ERP
 
             // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

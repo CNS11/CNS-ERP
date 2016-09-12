@@ -57,7 +57,7 @@ namespace CNSSERP.DAL.Migrations
                         column: x => x.Tax_ratesRefId,
                         principalTable: "Tax_rates",
                         principalColumn: "Tax_ratesId",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Invoice_posiotionsDbSet_UnitsDbSet_UnitsRefId",
                         column: x => x.UnitsRefId,

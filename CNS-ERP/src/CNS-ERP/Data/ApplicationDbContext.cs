@@ -8,7 +8,7 @@ using CNS_ERP.Models;
 
 namespace CNSS_ERP.DAL
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext :IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -19,6 +19,8 @@ namespace CNSS_ERP.DAL
         {
             
             base.OnModelCreating(builder);
+            builder.Entity<ApplicationUser>();
+            builder.Entity<Storages>();
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
@@ -42,7 +44,8 @@ namespace CNSS_ERP.DAL
         
         public DbSet<Tax_rates> Tax_ratesDbSet { get; set; }
         
-        public DbSet<Movie> Movie { get; set; }
+        public DbSet<Movie> MovieDbSet { get; set; }
+        public DbSet<Storages> StoragesDbSet { get; set; }
 
         #endregion
         //   public DbSet<ApplicationRole> IdentityRole { get; set; }

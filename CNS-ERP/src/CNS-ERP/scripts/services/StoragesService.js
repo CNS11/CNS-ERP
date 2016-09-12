@@ -1,12 +1,20 @@
 ﻿(function () {
     'use strict';
 
-    var StorageService = angular.module('storageServices', ['ngResource']);
+    angular.module('StoragesServices', ['ngResource'])
+    .factory('Storages', Storages);
+    Storages.$inject=['$resource'];
 
-    StorageService.factory('Storages', ['$resource', function ($resource) {
-        return $resource('/api/storages/', {}, {
-            query: { method: 'GET', params: {}, isArray: true }
+    function Storages($resource) {
+        return $resource('/api/storages/:id', { id: '@id' }, {
+           
+            query: { method: 'GET', params: {}, isArray: true },
+            get: { method: 'GET', params: { id: '@id' } },
+            remove: { method: 'GET', params: { id: '@id' } },
+            save: { method: 'POST', params: { storage: '@storage' } },
+            update: { method: 'PUT', params: { id: '@id',storage: '@storage' } }
+              });
+    }
 
-        });
-    }]);
-});
+
+})();

@@ -16,6 +16,20 @@ namespace CNSSERP.DAL.Migrations
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("CNS_ERP.Models.Movie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Director");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MovieDbSet");
+                });
+
             modelBuilder.Entity("CNSS_ERP.DAL.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
@@ -288,7 +302,7 @@ namespace CNSSERP.DAL.Migrations
 
                     b.HasKey("Tax_ratesId");
 
-                    b.ToTable("Tax_rates");
+                    b.ToTable("Tax_ratesDbSet");
                 });
 
             modelBuilder.Entity("CNSS_ERP.DAL.Models.Storage.Product_categories", b =>
@@ -343,6 +357,31 @@ namespace CNSSERP.DAL.Migrations
                     b.ToTable("ProductsDbSet");
                 });
 
+            modelBuilder.Entity("CNSS_ERP.DAL.Models.Storage.Storages", b =>
+                {
+                    b.Property<int>("StorageId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("City")
+                        .IsRequired();
+
+                    b.Property<string>("Postal_code")
+                        .IsRequired();
+
+                    b.Property<string>("Street")
+                        .IsRequired();
+
+                    b.Property<string>("Street_address")
+                        .IsRequired();
+
+                    b.Property<string>("Suite")
+                        .IsRequired();
+
+                    b.HasKey("StorageId");
+
+                    b.ToTable("StoragesDbSet");
+                });
+
             modelBuilder.Entity("CNSS_ERP.DAL.Models.Storage.UnitConversions", b =>
                 {
                     b.Property<int>("UnitConversionsId")
@@ -386,8 +425,6 @@ namespace CNSSERP.DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
-
-                    b.Property<int>("Position");
 
                     b.Property<string>("Street")
                         .IsRequired();

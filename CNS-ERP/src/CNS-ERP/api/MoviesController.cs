@@ -41,7 +41,7 @@ namespace CNS_ERP.api
                 return BadRequest(ModelState);
             }
 
-            Movie movie = await _context.Movie.SingleOrDefaultAsync(m => m.Id == id);
+            Movie movie = await _context.MovieDbSet.SingleOrDefaultAsync(m => m.Id == id);
 
             if (movie == null)
             {
@@ -95,7 +95,7 @@ namespace CNS_ERP.api
                 return BadRequest(ModelState);
             }
 
-            _context.Movie.Add(movie);
+            _context.MovieDbSet.Add(movie);
             try
             {
                 await _context.SaveChangesAsync();
@@ -124,13 +124,13 @@ namespace CNS_ERP.api
                 return BadRequest(ModelState);
             }
 
-            Movie movie = await _context.Movie.SingleOrDefaultAsync(m => m.Id == id);
+            Movie movie = await _context.MovieDbSet.SingleOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {
                 return NotFound();
             }
 
-            _context.Movie.Remove(movie);
+            _context.MovieDbSet.Remove(movie);
             await _context.SaveChangesAsync();
 
             return Ok(movie);
@@ -138,7 +138,7 @@ namespace CNS_ERP.api
 
         private bool MovieExists(int id)
         {
-            return _context.Movie.Any(e => e.Id == id);
+            return _context.MovieDbSet.Any(e => e.Id == id);
         }
     }
 }

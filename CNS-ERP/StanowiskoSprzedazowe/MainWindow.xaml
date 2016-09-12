@@ -43,6 +43,8 @@
                        Content="Warzywa" />
             </customcontrol:TreeMap>
         </Grid>
-        <Grid Name="grid1" Grid.Row="1" />
+        <Grid Name="grid1"
+              Grid.Row="1"
+              Visibility="Collapsed" />
     </Grid>
 </Window>
