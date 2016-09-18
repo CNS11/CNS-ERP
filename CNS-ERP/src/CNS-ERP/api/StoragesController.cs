@@ -49,29 +49,33 @@ namespace CNS_ERP.api
         [HttpPost]
         public IActionResult Post([FromBody]Storages storage)
         {
-            if (storage.StorageId==0)
+            if (ModelState.IsValid)
             {
-                _repo.Insert(storage);
-                _repo.Save();
-                return new ObjectResult(storage);
-            }
-            else
-            {
-                Storages original = _repo.SelectByID(storage.StorageId);
-                original.Postal_code = storage.Postal_code;
-                original.City = storage.City;
-                original.Street = storage.Street;
-                original.Street_address = storage.Street_address;
-                original.Suite = storage.Suite;
-                _repo.Save();
-                return new ObjectResult(original);
+                if (storage.StorageId == 0)
+                {
+                    _repo.Insert(storage);
+                    _repo.Save();
+                    return new ObjectResult(storage);
+                }
+                else
+                {
+                    Storages original = _repo.SelectByID(storage.StorageId);
+                    original.Postal_code = storage.Postal_code;
+                    original.City = storage.City;
+                    original.Street = storage.Street;
+                    original.Street_address = storage.Street_address;
+                    original.Suite = storage.Suite;
+                    _repo.Save();
+                    return new ObjectResult(original);
 
+                }
             }
+            return new BadRequestObjectResult(ModelState);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Storages storage)
+        public void Put(int id, Storages storage)
         {
             _repo.Update(storage);
             _repo.Save();
@@ -79,10 +83,24 @@ namespace CNS_ERP.api
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete([FromRoute]int id)
+        public IActionResult Delete([FromRoute]int id)
         {
-            _repo.Delete(id);
-            _repo.Save();
+
+                if(_repo.Delete(id))
+            {
+                _repo.Save();
+                return new ObjectResult(null);
+                
+
+            }else
+            {
+                return new BadRequestObjectResult(ModelState);
+
+            }
+
+
+
+
         }
     }
 }

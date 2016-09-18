@@ -6,7 +6,133 @@
         .controller('storagesListController', storagesListController)
     .controller('storagesAddController', storagesAddController)
 .controller('storagesEditController', storagesEditController)
-.controller('storagesDeleteController', storagesDeleteController);
+.controller('storagesDeleteController', storagesDeleteController)
+    .controller('wsdlController', wsdlController)
+    .controller('DatePickerController', DatePickerController);
+
+
+
+    
+
+    wsdlController.$inject = ['$scope','$http', '$routeParams', '$location'];
+    function wsdlController($scope, $http) {
+        var url = 'https://uslugaterytws1test.stat.gov.pl/TerytWs1.svc?PobierzDateAktualnegoKatUlic';
+   //     GetSoapResponse();
+       
+        //GetSoapResponse();
+        //var createCORSRequest = function (method, url) {
+        //    var xhr = new XMLHttpRequest();
+        //    if ("withCredentials" in xhr) {
+        //        // Most browsers.
+        //        xhr.open(method, url, true);
+        //    } else if (typeof XDomainRequest != "undefined") {
+        //        // IE8 & IE9
+        //        xhr = new XDomainRequest();
+        //        xhr.open(method, url);
+        //    } else {
+        //        // CORS not supported.
+        //        xhr = null;
+        //    }
+        //    return xhr;
+        //};
+
+        //var url = 'https://uslugaterytws1test.stat.gov.pl/TerytWs1.svc?PobierzDateAktualnegoKatUlic';
+        //var method = 'GET';
+        //var xhr = createCORSRequest(method, url);
+
+        //xhr.onload = function () {
+        //    // Success code goes here.
+        //};
+
+        //xhr.onerror = function () {
+        //    // Error code goes here.
+        //};
+
+
+        //xhr.withCredentials = true;
+        //xhr.setRequestHeader('Access-Control-Allow-Origin', '<origin> | *');
+        //xhr.send();
+
+        //$http.get('https://uslugaterytws1test.stat.gov.pl/TerytWs1.svc?PobierzDateAktualnegoKatUlic').success(function (response) {
+        //    $scope.listCities = response;
+        //}).error(function () {
+        //    alert('sdfdf');
+        //});
+        //$.ajax({
+        //    type: "GET",
+        //    url: "https://uslugaterytws1test.stat.gov.pl/TerytWs1.svc?PobierzDateAktualnegoKatUlic",
+        //    data: "{}",
+        //    dataType: "xml",
+        //    contentType: "application/xml; charset=utf-8",
+        //    success: function (data) {
+        //        alert(data);
+        //    },
+        //    complete: function (data) {
+        //        alert(data);
+        //    },
+        //    error: function (data) {
+        //        alert(data);
+        //    }
+        //});
+
+        //var url = 'https://uslugaterytws1test.stat.gov.pl/TerytWs1.svc?PobierzDateAktualnegoKatUlic';
+        //var xhr=createCORSRequest('GET', url);
+
+        //xhr.onreadystatechange = function () {
+        //    if (xhr.status == 200 && xhr.readyState == 4) {
+        //        alert('response: ' + xhr.responseText);
+        //    }
+        //};
+        //xhr.send();
+    };
+    function GetSoapResponse() {
+        var pl = new SOAPClientParameters();
+        SOAPClient.invoke(url, "PobierzDateAktualnegoKatTerc", pl, true, GetSoapResponse_callBack);
+    }
+    function GetSoapResponse_callBack(r, soapResponse) {
+        if (soapResponse.xml)    // IE
+            alert(soapResponse.xml);
+        else    // MOZ
+            alert((new XMLSerializer()).serializeToString(soapResponse));
+    }
+    //function createCORSRequest(method, url) {
+    //    var xhr = new XMLHttpRequest();
+    //    if ("withCredentials" in xhr) {
+
+    //        // Check if the XMLHttpRequest object has a "withCredentials" property.
+    //        // "withCredentials" only exists on XMLHTTPRequest2 objects.
+    //        xhr.open(method, url, true);
+
+    //    } else if (typeof XDomainRequest != "undefined") {
+
+    //        // Otherwise, check if XDomainRequest.
+    //        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+    //        xhr = new XDomainRequest();
+    //        xhr.open(method, url);
+
+    //    } else {
+
+    //        // Otherwise, CORS is not supported by the browser.
+    //        xhr = null;
+
+    //    }
+    //    return xhr;
+    //}
+    //function GetSoapResponse() {
+    //    //var pl = new SOAPClientParameters();
+    //    //SOAPClient.invoke('https://uslugaterytws1test.stat.gov.pl/TerytWs1.svc?PobierzDateAktualnegoKatUlic', "HelloWorld", pl, true, GetSoapResponse_callBack);
+    //}
+    //function GetSoapResponse_callBack(r, soapResponse) {
+    //    if (soapResponse.xml)    // IE
+    //        alert(soapResponse.xml);
+    //    else    // MOZ
+    //        alert((new XMLSerializer()).serializeToString(soapResponse));
+    //}
+
+    //var xhr = createCORSRequest('GET', url);
+    //if (!xhr) {
+    //    throw new Error('CORS not supported');
+    //}
 
     storagesListController.$inject = ['$scope', 'Storages'];
 
@@ -35,7 +161,7 @@
 
     function storagesEditController($scope, $routeParams, $location, Storages) {
         $scope.storage = Storages.get({ id: $routeParams.id });
-        getCities($scope);
+        //getCities($scope);
         $scope.edit = function () {
             $scope.storage.$save(function () {
                 
@@ -43,8 +169,9 @@
             },
             function (error) {
            _showValidationErrors($scope, error);
-                            });
+            });
         };
+
     }
 
     /* Movies Delete Controller  */
@@ -53,11 +180,16 @@
     function storagesDeleteController($scope, $routeParams, $location, Storages) {
         $scope.storage = Storages.get({ id: $routeParams.id });
         $scope.remove = function () {
-            $scope.storage.$remove(function () {
+            $scope.storage.$remove({ id: $routeParams.id }, function () {
+              //  $location.path('/');
+            },
+            function (error) {
+                alert(error);
                 $location.path('/');
             });
         };
     }
+    DatePickerController.$inject = ['$scope'];
     function DatePickerController($scope) {
         $scope.open = function ($event) {
             $event.preventDefault();
@@ -75,13 +207,5 @@
         } else {
             $scope.validationErrors.push('Nie można było dodać magazynu.');
         };
-    }
-    function getCities($scope)
-    {
-        $http.get("https://uslugaterytws1.stat.gov.pl/TerytWs1.svc?singleWsdl")
-     .then(function (response) {
-         $scope.data = response.data;
-     });
-
     }
 })();

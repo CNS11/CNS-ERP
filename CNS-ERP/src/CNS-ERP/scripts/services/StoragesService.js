@@ -10,7 +10,7 @@
            
             query: { method: 'GET', params: {}, isArray: true },
             get: { method: 'GET', params: { id: '@id' } },
-            remove: { method: 'GET', params: { id: '@id' } },
+            remove: { method: 'DELETE', params: { id: '@id' } },
             save: { method: 'POST', params: { storage: '@storage' } },
             update: { method: 'PUT', params: { id: '@id',storage: '@storage' } }
               });

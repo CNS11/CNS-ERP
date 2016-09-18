@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CNSS_ERP.DAL.Models.Storage;
 using CNSS_ERP.DAL;
+using Microsoft.EntityFrameworkCore;
 
 namespace CNS_ERP.Repos.Storage
 {
@@ -25,9 +26,10 @@ namespace CNS_ERP.Repos.Storage
             {
                 lock (_context)
                 _context.StoragesDbSet.Remove(_context.StoragesDbSet.Where(x => x.StorageId == id).First());
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
+
             }
-            catch (Exception)
+            catch (DbUpdateException)
             {
 
                 return false;

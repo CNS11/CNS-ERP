@@ -4,7 +4,7 @@
     config.$inject = ['$routeProvider', '$locationProvider'];
 
     angular.module('CNSS-App', [
-        'ngRoute', 'StoragesServices'
+        'ngRoute', 'StoragesServices','TestServices'
     ]).config(config)
         
     function config($routeProvider, $locationProvider) {
@@ -28,7 +28,11 @@
             .when('/storages/delete/:id', {
                 templateUrl: '/Views/Storages/delete.html',
                 controller: 'storagesDeleteController'
-            });
+            })
+        .when('/storages/opp', {
+            templateUrl: '/Views/Storages/wsdl.html',
+            controller: 'wsdlController'
+        });
 
         $locationProvider.html5Mode(true);
     }

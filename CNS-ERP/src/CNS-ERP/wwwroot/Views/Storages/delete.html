@@ -2,6 +2,12 @@
     Czy chcesz usunać magazyn?
     &quot;{{storage.storageId}}&quot;?
 </div>
-
-<a href="/storages/list" class="btn btn-default">Anuluj</a>
-<button class="btn btn-danger" ng-click="remove()">OK</button>
+<div class="bg-danger validationErrors" ng-show="validationErrors">
+    <ul>
+        <li ng-repeat="error in validationErrors">{{error}}</li>
+    </ul>
+</div> 
+<form ng-submit="remove()">
+    <a href="/storages/list" class="btn btn-default">Anuluj</a>
+    <button class="btn btn-danger" type="submit">OK</button>
+</form>

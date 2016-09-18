@@ -15,6 +15,7 @@ namespace CNSS_ERP.DAL.Models.Storage
         public int StorageId { get; set; }
 
         [Required(ErrorMessage = "Pole miasto jest wymagane.")]
+        [MinLength(3, ErrorMessage = "Pole miasto musi mieć co najmniej 3 znaki")]
         public string City { get; set; }
         [Required(ErrorMessage = "Pole ulica jest wymagane.")]
         public string Street { get; set; }

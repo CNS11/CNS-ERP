@@ -2,7 +2,9 @@
 /// <reference path="../gruntfile.js" />
 /// <reference path="../scripts/app.js" />
 /// <reference path="../scripts/controller/storagescontroller.js" />
+/// <reference path="../scripts/controller/wsdlcontroller - copy.js" />
 /// <reference path="../scripts/Services/storagesService.js" />
+/// <reference path="../scripts/services/wsdlservice - copy.js" />
 /// <reference path="app.js" />
 /// <reference path="js/GroupsAndUsers.js" />
 /// <reference path="js/mapa.js" />
