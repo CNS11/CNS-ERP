@@ -101,6 +101,11 @@ namespace CNS_ERP.api
 
 
 
+
+        }
+        public IActionResult GetCities()
+        {
+            return new ObjectResult(null);
         }
     }
 }

@@ -18,12 +18,14 @@ namespace CNSS_ERP.DAL.Models.Storage
         [MinLength(3, ErrorMessage = "Pole miasto musi mieć co najmniej 3 znaki")]
         public string City { get; set; }
         [Required(ErrorMessage = "Pole ulica jest wymagane.")]
+        [MinLength(3, ErrorMessage = "Pole Ulica musi mieć co najmniej 3 znaki")]
         public string Street { get; set; }
+        [Required(ErrorMessage = "Pole kod pocztowy jest wymagane.")]
+        [RegularExpression(@"^\d{2}(-\d{3})?$", ErrorMessage = "Kod pocztowy musi być w formacie XX-XXX")]
 
         [DataType(DataType.PostalCode)]
-        [Required(ErrorMessage = "Pole kod pocztowy jest wymagane.")]
         public string Postal_code { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Pole adres jest wymagane.")]
         public string Street_address { get; set; }
 
         [Required]
