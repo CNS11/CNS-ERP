@@ -34,6 +34,10 @@ namespace CNS_ERP.Repos.Storage
 
                 return false;
             }
+            catch (Exception)
+            {
+                return false;
+            }
             return true;
 
         }
@@ -91,6 +95,7 @@ namespace CNS_ERP.Repos.Storage
 
         public bool Update(Storages obj)
         {
+           // _context.StoragesDbSet.Update(obj);
             _context.Entry<Storages>(obj).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             Save();
             return true;

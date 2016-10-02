@@ -5,8 +5,10 @@
     "angular": "~1.5.8",
     "angular-resource": "~1.5.8",
     "angular-route": "~1.5.8",
-    "jquery": "2.2.3",
-    "bootstrap": "~3.3.7"
+    "bootstrap": "~3.3.7",
+    "jquery": "~3.1.1",
+    "angular-material": "~1.1.1",
+    "np-autocomplete": "~2.1.0"
   },
   "install": {
     "path": {
@@ -15,6 +17,7 @@
     }
   },
   "resolutions": {
-    "jquery": ">= 1.7.2"
+    "jquery": ">= 1.7.2",
+    "angular": "1.5.8"
   }
 }

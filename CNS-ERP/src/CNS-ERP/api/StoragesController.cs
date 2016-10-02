@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CNSS_ERP.DAL.Models.Storage;
 using CNS_ERP.Repos.Storage;
 using CNS_ERP.Interfaces;
-using CNSS_ERP.DAL;
+using GetCountriesService;
+using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -75,10 +74,11 @@ namespace CNS_ERP.api
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, Storages storage)
+        public IActionResult Put(int id, Storages storage)
         {
             _repo.Update(storage);
             _repo.Save();
+             return new ObjectResult(null);
         }
 
         // DELETE api/values/5
@@ -86,26 +86,17 @@ namespace CNS_ERP.api
         public IActionResult Delete([FromRoute]int id)
         {
 
-                if(_repo.Delete(id))
-            {
+            _repo.Delete(id);
+
                 _repo.Save();
-                return new ObjectResult(null);
-                
+            return new StatusCodeResult(200);
 
-            }else
-            {
-                return new BadRequestObjectResult(ModelState);
-
-            }
 
 
 
 
 
         }
-        public IActionResult GetCities()
-        {
-            return new ObjectResult(null);
-        }
+
     }
 }

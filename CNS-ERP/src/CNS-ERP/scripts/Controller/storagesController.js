@@ -8,7 +8,8 @@
 .controller('storagesEditController', storagesEditController)
 .controller('storagesDeleteController', storagesDeleteController)
     .controller('wsdlController', wsdlController)
-    .controller('DatePickerController', DatePickerController);
+    .controller('DatePickerController', DatePickerController)
+    .controller('AutoCompleteCtrl', AutoCompleteCtrl);
 
 
 
@@ -21,73 +22,7 @@
         var method = 'GET';
         createCORSRequest();
         alert('sdfd');
-   //     GetSoapResponse();
-       
-        //GetSoapResponse();
-        //var createCORSRequest = function (method, url) {
-        //    var xhr = new XMLHttpRequest();
-        //    if ("withCredentials" in xhr) {
-        //        // Most browsers.
-        //        xhr.open(method, url, true);
-        //    } else if (typeof XDomainRequest != "undefined") {
-        //        // IE8 & IE9
-        //        xhr = new XDomainRequest();
-        //        xhr.open(method, url);
-        //    } else {
-        //        // CORS not supported.
-        //        xhr = null;
-        //    }
-        //    return xhr;
-        //};
 
-        //var url = 'https://uslugaterytws1test.stat.gov.pl/TerytWs1.svc?PobierzDateAktualnegoKatUlic';
-        //var method = 'GET';
-        //var xhr = createCORSRequest(method, url);
-
-        //xhr.onload = function () {
-        //    // Success code goes here.
-        //};
-
-        //xhr.onerror = function () {
-        //    // Error code goes here.
-        //};
-
-
-        //xhr.withCredentials = true;
-        //xhr.setRequestHeader('Access-Control-Allow-Origin', '<origin> | *');
-        //xhr.send();
-
-        //$http.get('https://uslugaterytws1test.stat.gov.pl/TerytWs1.svc?PobierzDateAktualnegoKatUlic').success(function (response) {
-        //    $scope.listCities = response;
-        //}).error(function () {
-        //    alert('sdfdf');
-        //});
-        //$.ajax({
-        //    type: "GET",
-        //    url: "https://uslugaterytws1test.stat.gov.pl/TerytWs1.svc?PobierzDateAktualnegoKatUlic",
-        //    data: "{}",
-        //    dataType: "xml",
-        //    contentType: "application/xml; charset=utf-8",
-        //    success: function (data) {
-        //        alert(data);
-        //    },
-        //    complete: function (data) {
-        //        alert(data);
-        //    },
-        //    error: function (data) {
-        //        alert(data);
-        //    }
-        //});
-
-        //var url = 'https://uslugaterytws1test.stat.gov.pl/TerytWs1.svc?PobierzDateAktualnegoKatUlic';
-        //var xhr=createCORSRequest('GET', url);
-
-        //xhr.onreadystatechange = function () {
-        //    if (xhr.status == 200 && xhr.readyState == 4) {
-        //        alert('response: ' + xhr.responseText);
-        //    }
-        //};
-        //xhr.send();
     };
     function soapRequest(){
         var str = 'your SOAP request'; 
@@ -119,44 +54,6 @@
         else    // MOZ
             alert((new XMLSerializer()).serializeToString(soapResponse));
     }
-    //function createCORSRequest(method, url) {
-    //    var xhr = new XMLHttpRequest();
-    //    if ("withCredentials" in xhr) {
-
-    //        // Check if the XMLHttpRequest object has a "withCredentials" property.
-    //        // "withCredentials" only exists on XMLHTTPRequest2 objects.
-    //        xhr.open(method, url, true);
-
-    //    } else if (typeof XDomainRequest != "undefined") {
-
-    //        // Otherwise, check if XDomainRequest.
-    //        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-    //        xhr = new XDomainRequest();
-    //        xhr.open(method, url);
-
-    //    } else {
-
-    //        // Otherwise, CORS is not supported by the browser.
-    //        xhr = null;
-
-    //    }
-    //    return xhr;
-    //}
-    //function GetSoapResponse() {
-    //    //var pl = new SOAPClientParameters();
-    //    //SOAPClient.invoke('https://uslugaterytws1test.stat.gov.pl/TerytWs1.svc?PobierzDateAktualnegoKatUlic', "HelloWorld", pl, true, GetSoapResponse_callBack);
-    //}
-    //function GetSoapResponse_callBack(r, soapResponse) {
-    //    if (soapResponse.xml)    // IE
-    //        alert(soapResponse.xml);
-    //    else    // MOZ
-    //        alert((new XMLSerializer()).serializeToString(soapResponse));
-    //}
-
-    //var xhr = createCORSRequest('GET', url);
-    //if (!xhr) {
-    //    throw new Error('CORS not supported');
-    //}
 
     storagesListController.$inject = ['$scope', 'Storages'];
 
@@ -168,6 +65,7 @@
     function storagesAddController($scope, $location, Storages) {
 
         $scope.storage = new Storages();
+
         $scope.add = function () {
             $scope.storage.$save(function () {
                 $location.path('/');
@@ -205,7 +103,7 @@
         $scope.storage = Storages.get({ id: $routeParams.id });
         $scope.remove = function () {
             $scope.storage.$remove({ id: $routeParams.id }, function () {
-              //  $location.path('/');
+                $location.path('/');
             },
             function (error) {
                 alert(error);
@@ -232,4 +130,56 @@
             $scope.validationErrors.push('Nie można było dodać magazynu.');
         };
     }
+    AutoCompleteCtrl.$inject = ['$http', '$timeout', '$q', '$log'];
+    function AutoCompleteCtrl($http, $timeout, $q, $log) {
+        var self = this;
+        self.simulateQuery = true;
+        self.products = loadAllProducts($http);
+        self.querySearch = querySearch;
+        function querySearch(query) {
+            var results = query ? self.products.filter(createFilterFor(query)) : self.products, deferred;
+            if (self.simulateQuery) {
+                deferred = $q.defer();
+                $timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
+                return deferred.promise;
+            } else {
+                return results;
+            }
+        }
+        function loadAllProducts($http) {
+            var allProducts = [];
+            var url = '';
+            var result = [];
+            url = 'api/Cities';
+            $http({
+                method: 'GET',
+                url: url,
+            }).then(function successCallback(response) {
+                allProducts = response.data;
+                angular.forEach(allProducts, function (product, key) {
+                    result.push(
+                        {
+                            value: product.Name.toLowerCase(),
+                            display: product.Name
+                        });
+                });
+            }, function errorCallback(response) {
+                console.log('Oops! Something went wrong while fetching the data. Status Code: ' + response.status + ' Status statusText: ' + response.statusText);
+            });
+            return result;
+        }
+        function createFilterFor(query) {
+            var lowercaseQuery = angular.lowercase(query);
+            return function filterFn(product) {
+                return (product.value.indexOf(lowercaseQuery) === 0);
+            };
+
+        }
+    }
+
+
+
+
+
+
 })();

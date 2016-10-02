@@ -6,6 +6,7 @@
             <tr>
 
                 <th>Identyfikator</th>
+                <th>Identyfikator opisowy</th>
                 <th>Miasto</th>
                 <th>Ulica</th>
                 <th>Kod pocztowy</th>
@@ -18,6 +19,7 @@
             <tr ng-repeat="storage in Storages">
 
                 <td>{{storage.storageId}}</td>
+                <td>{{storage.name}}</td>
                 <td>{{storage.city}}</td>
                 <td>{{storage.street}}</td>
                 <td>{{storage.postal_code}}</td>
@@ -33,7 +35,5 @@
 
     <p>
         <a href="/storages/add" class="btn btn-primary">Dodaj nowy magazyn</a>
-        <a href="/storages/opp" class="btn btn-danger btn-xs">Miasta</a>
-
     </p>
 </div>

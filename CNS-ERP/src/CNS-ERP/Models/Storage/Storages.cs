@@ -28,7 +28,8 @@ namespace CNSS_ERP.DAL.Models.Storage
         [Required(ErrorMessage = "Pole adres jest wymagane.")]
         public string Street_address { get; set; }
 
-        [Required]
         public string Suite { get; set; }
+
+        public string Name { get; set; }
     }
 }
