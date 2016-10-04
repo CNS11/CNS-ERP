@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using GetCountriesService;
 using Newtonsoft.Json;
+using System.Xml;
 
 namespace CNS_ERP.api
 {
@@ -14,13 +15,20 @@ namespace CNS_ERP.api
     
     public class CitiesController : Controller
     {
-        public async Task<GetCountriesResponse> GetCities()
+        public async Task<List<String>> GetCities()
         {
+            List<string> lista = new List<string>();
             countrySoapClient client = new countrySoapClient(new countrySoapClient.EndpointConfiguration());
             var list = await client.GetCountriesAsync(new GetCountriesRequest());
-            //   string cities = JsonConvert.SerializeObject(list);
-         //   JsonResult result = new JsonResult(cities);
-            return list;
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(list.Body.GetCountriesResult.ToString());
+            XmlNodeList xnList = xmlDoc.SelectNodes("/NewDataSet/Table/Name");
+            foreach (XmlNode xn in xnList)
+            {
+                lista.Add(xn.InnerText.ToString());
+
+            }
+            return lista;
 
         }
     }

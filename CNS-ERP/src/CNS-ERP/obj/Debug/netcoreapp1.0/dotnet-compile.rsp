@@ -236,7 +236,10 @@
 --reference:C:\Users\Łukasz\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\Łukasz\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\Łukasz\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
+--reference:C:\Users\Łukasz\.nuget\packages\System.Xml.XmlDocument\4.0.1\ref\netstandard1.3\System.Xml.XmlDocument.dll
 --reference:C:\Users\Łukasz\.nuget\packages\System.Xml.XmlSerializer\4.0.11\ref\netstandard1.3\System.Xml.XmlSerializer.dll
+--reference:C:\Users\Łukasz\.nuget\packages\System.Xml.XPath\4.0.1\ref\netstandard1.3\System.Xml.XPath.dll
+--reference:C:\Users\Łukasz\.nuget\packages\system.xml.xpath.xmldocument\4.0.0\ref\dotnet\System.Xml.XPath.XmlDocument.dll
 --resource:"C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\obj\Debug\netcoreapp1.0\CNS-ERPdotnet-compile.deps.json",CNS-ERP.deps.json
 C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\Program.cs
 C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\Startup.cs
@@ -260,6 +263,8 @@ C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\Migrations\20160829202656_29
 C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\Migrations\20160829202656_29082016003LS.Designer.cs
 C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\Migrations\20160912190847_12092016001LS.cs
 C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\Migrations\20160912190847_12092016001LS.Designer.cs
+C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\Migrations\20161004205010_04102016.cs
+C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\Migrations\20161004205010_04102016.Designer.cs
 C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\Migrations\ApplicationDbContextModelSnapshot.cs
 C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\Models\ApplicationUser.cs
 C:\Users\Łukasz\Desktop\NCSERP\CNS-ERP\src\CNS-ERP\Models\Contractors.cs

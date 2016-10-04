@@ -31,5 +31,7 @@ namespace CNSS_ERP.DAL.Models.Storage
         public string Suite { get; set; }
 
         public string Name { get; set; }
+
+        public string Country { get; set; }
     }
 }

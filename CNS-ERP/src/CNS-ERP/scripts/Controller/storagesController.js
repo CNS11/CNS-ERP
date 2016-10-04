@@ -159,8 +159,8 @@
                 angular.forEach(allProducts, function (product, key) {
                     result.push(
                         {
-                            value: product.Name.toLowerCase(),
-                            display: product.Name
+                            value: product.toLowerCase(),
+                            display: product
                         });
                 });
             }, function errorCallback(response) {

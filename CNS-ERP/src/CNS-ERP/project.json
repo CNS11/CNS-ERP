@@ -37,7 +37,9 @@
     "VS2012-Javascript-Intellisense": "1.0.712.2147",
     "Microsoft.EntityFrameworkCore": "1.0.1",
     "System.Linq.Queryable": "4.0.1",
-    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0"
+    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
+    "System.Xml.XmlDocument": "4.0.1",
+    "system.xml.xpath.xmldocument": "4.0.0"
   },
   "tools": {
     "Microsoft.EntityFrameworkCore.Tools": {
