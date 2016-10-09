@@ -37,5 +37,9 @@ namespace CNS_ERP.Controllers
 
             return View();
         }
+        public IActionResult Part9()
+        {
+            return View();
+        }
     }
 }

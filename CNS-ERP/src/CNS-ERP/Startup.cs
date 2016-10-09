@@ -8,6 +8,9 @@ using Microsoft.Extensions.Logging;
 using CNS_ERP.Services;
 using CNSS_ERP.DAL;
 using CNSS_ERP.DAL.Models;
+using CNS_ERP.Interfaces;
+using CNS_ERP.Repos.Storage;
+using CNSS_ERP.DAL.Models.Storage;
 
 namespace CNS_ERP
 {
@@ -40,13 +43,13 @@ namespace CNS_ERP
         {
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            services.AddSingleton<IRepository<Storages>, StoragesRepository>();
 
             services.AddMvc();
 

@@ -1,0 +1,13 @@
+﻿<div class="alert alert-warning">
+    Czy chcesz usunać magazyn?
+    &quot;{{storage.name}}&quot;?
+</div>
+<div class="bg-danger validationErrors" ng-show="validationErrors">
+    <ul>
+        <li ng-repeat="error in validationErrors">{{error}}</li>
+    </ul>
+</div> 
+<form ng-submit="remove()">
+    <a href="/storages/list" class="btn btn-default">Anuluj</a>
+    <button class="btn btn-danger" type="submit">OK</button>
+</form>

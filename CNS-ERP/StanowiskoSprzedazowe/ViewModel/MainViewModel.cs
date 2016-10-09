@@ -1,6 +1,12 @@
 using GalaSoft.MvvmLight;
 using PosnetLib;
+using StanowiskoSprzedazowe.ServiceReference1;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Runtime.InteropServices;
+using System.ServiceModel;
 
 namespace StanowiskoSprzedazowe.ViewModel
 {
@@ -18,34 +24,72 @@ namespace StanowiskoSprzedazowe.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
-        /// 
-
         const string _dllLocation = "C:\\Users\\£ukasz\\Desktop\\NCSERP\\CNS-ERP\\StanowiskoSprzedazowe\\fiscal_printer\\libposnet.dll";
         [DllImport(_dllLocation)]
         public static extern void POS_SetDebugFileName(int a, int b);
+        JednostkaTerytorialna selectedState;
+        TerytWs1Client client = new TerytWs1Client();
+        private List<JednostkaTerytorialna> states = new List<JednostkaTerytorialna>();
+        private ObservableCollection<JednostkaTerytorialna> districts = new ObservableCollection<JednostkaTerytorialna>();
+
+
+        public List<JednostkaTerytorialna> States
+        {
+            get
+            {
+                return states;
+            }
+
+            set
+            {
+                states = value;
+            }
+        }
+        DateTime now = new DateTime(2016, 09, 21);
+        public JednostkaTerytorialna SelectedState
+        {
+            get
+            {
+                return selectedState;
+            }
+
+            set
+            {
+                selectedState = (from i in States where i.NAZWA==value.NAZWA select i).FirstOrDefault();
+                JednostkaTerytorialna [] powiaty=client.PobierzListePowiatow(selectedState.WOJ, now);
+                Districts = new ObservableCollection<JednostkaTerytorialna>(powiaty);
+            }
+        }
+
+        public ObservableCollection<JednostkaTerytorialna> Districts
+        {
+            get
+            {
+                return districts;
+            }
+
+            set
+            {
+                districts = value;
+                RaisePropertyChanged("Districts");
+            }
+        }
+
         public MainViewModel()
         {
+             
 
-            try
-            {
-              //  POS_SetDebugFileName(1, 2);
-            }
-            catch (System.Exception)
-            {
+            
+            client.ClientCredentials.UserName.UserName = "TestPubliczny";
+            client.ClientCredentials.UserName.Password = "1234abcd";
+            client.CzyZalogowany();
+                JednostkaTerytorialna[] wojewodztwa=client.PobierzListeWojewodztw(DataStanu:new DateTime(2016,09,21));
+             States = new List<JednostkaTerytorialna>(wojewodztwa);
+            SelectedState = (from i in States select i).FirstOrDefault();
+      //      RaisePropertyChanged("states");
+               // client.Close();
 
-            }
-                  
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+
         }
     }
 }

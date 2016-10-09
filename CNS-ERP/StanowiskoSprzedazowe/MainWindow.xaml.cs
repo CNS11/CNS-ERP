@@ -1,19 +1,5 @@
-﻿using StanowiskoSprzedazowe.TreeMap;
-using StanowiskoSprzedazowe.ViewModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using StanowiskoSprzedazowe.ViewModel;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace StanowiskoSprzedazowe
 {
@@ -22,30 +8,59 @@ namespace StanowiskoSprzedazowe
     /// </summary>
     public partial class MainWindow : Window
     {
+        public MainViewModel y = new MainViewModel();
         public MainWindow()
         {
+            
             InitializeComponent();
-            this.DataContext = new MainViewModel();
+            this.DataContext = y;
+
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.Integration.WindowsFormsHost host =
                     new System.Windows.Forms.Integration.WindowsFormsHost();
-            //PosnetAxLib.PosnetAxControl axPosnet = new PosnetAxLib.PosnetAxControl();
             AxPosnetLib.AxPosnetLib axPosnet = new AxPosnetLib.AxPosnetLib();
             host.Child = axPosnet;
-            // host.Child = axPosnet;
 
             this.grid1.Children.Add(host);
 
-            int connectionSuccess=axPosnet.ConnectCom("COM4", 9600, 1);
+            int connectionSuccess=axPosnet.ConnectCom("COM5", 9600, 1);
+            if (connectionSuccess < 0)
+            {
+                MessageBoxResult result = MessageBox.Show("Nie udało się połączyć z drukarką fiskalną sprawdź połączenie i ustawienia.", "Błąd", MessageBoxButton.OK, MessageBoxImage.Error);
+                App.Current.Shutdown();
+            }
             string libVersion=axPosnet.PosnetLibGetVersion();
            // int send=axPosnet.Send("0x02"+"sdev\t@1\t#8FE8" +"0x03");
-            int sendCommand = axPosnet.Send("0x02" + "monthlyrep0x09 da2016-08-190x09#CRC16" + "0x03");
+          //  int sendCommand = axPosnet.Send("0x02" + "monthlyrep0x09 da2016-08-190x09#CRC16" + "0x03");
             string printerResponse = axPosnet.Receive();
-            int a=axPosnet.SendFrame( "dailyrep", "da2016-08-23");
+            //int a=axPosnet.SendFrame( "dailyrep", "da2016-08-23");
+            int a = axPosnet.SendFrame("trinit", null);
+            for (int i = 0; i < 5; i++)
+            {
+                int b = axPosnet.SendFrame("trline", "naMleko\tvt2\tpr245");
+            };
+            int c = axPosnet.SendFrame("subtotal", null);
+            int d = axPosnet.SendFrame("trpaymentcurr", "wc100\tra10000\tnaPolski złoty\tPLN");
+            int eA = axPosnet.SendFrame("trftrendb ", null);
+            int ee = axPosnet.SendFrame("trend", null);
+
+
+
             string printerResponseSF = axPosnet.Receive();
+            //this.ltbWoj.ItemsSource = y.states;
+        }
+
+        private void Label_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Label_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
 
         }
     }

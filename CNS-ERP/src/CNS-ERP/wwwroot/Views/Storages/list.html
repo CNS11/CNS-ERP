@@ -1,0 +1,39 @@
+﻿<div>
+
+    <h1>Lista magazynów</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+
+                <th>Identyfikator</th>
+                <th>Identyfikator opisowy</th>
+                <th>Miasto</th>
+                <th>Ulica</th>
+                <th>Kod pocztowy</th>
+                <th>Numer domu</th>
+                <th>Numer lokalu</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="storage in Storages">
+
+                <td>{{storage.storageId}}</td>
+                <td>{{storage.name}}</td>
+                <td>{{storage.city}}</td>
+                <td>{{storage.street}}</td>
+                <td>{{storage.postal_code}}</td>
+                <td>{{storage.street_address}}</td>
+                <td>{{storage.suite}}</td>
+                <td>
+                    <a href="/storages/edit/{{storage.storageId}}" class="btn btn-default btn-xs">Edytuj</a>
+                    <a href="/storages/delete/{{storage.storageId}}" class="btn btn-danger btn-xs">Usuń</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>
+        <a href="/storages/add" class="btn btn-primary">Dodaj nowy magazyn</a>
+    </p>
+</div>

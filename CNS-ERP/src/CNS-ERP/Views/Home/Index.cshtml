@@ -1,77 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-<script src="~/lib/interact/dist/interact.js"></script>
-<script>
+﻿<!DOCTYPE html>
+<html ng-app="CNSS-App">
+<head>
+    <base href="/">
+    <meta charset="utf-8" />
+    <title>CNSS-ERP</title>
 
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery-1.11.2.js"></script>
 
-    interact('.slider')                   // target the matches of that selector
-      .origin('self')                     // (0, 0) will be the element's top-left
-      .restrict({ drag: 'self' })           // keep the drag within the element
-      .inertia(true)                      // start inertial movement if thrown
-      .draggable({                        // make the element fire drag events
-          max: Infinity                     // allow drags on multiple elements
-      })
-      .on('dragmove', function (event) {  // call this function on every move
-          var sliderWidth = interact.getElementRect(event.target.parentNode).width,
-              value = event.pageX / sliderWidth;
-
-          event.target.style.paddingLeft = (value * 100) + '%';
-          event.target.setAttribute('data-value', value.toFixed(2));
-      });
-
-    interact.maxInteractions(Infinity);   // Allow multiple interactions
-
-
-</script>
-<style>
-    /* the slider bar */
-.slider {
-  position: relative;
-  width: 100%;
-  height: 1em;
-  margin: 1.5em auto;
-  background-color: #29e;
-  border-radius: 0.5em;
-  box-sizing: border-box;
-  
-  font-size: 8vmin;
-  
-  -ms-touch-action: none;
-      touch-action: none;
-}
-
-/* the slider handle */
-.slider:before {
-  content: "";
-  display: block;
-  position: relative;
-  top: -0.5em;
-
-  width: 2em;
-  height: 2em;
-  margin-left: -1em;
-  border: solid 0.25em #fff;
-  border-radius: 1em;
-  background-color: inherit;
-
-  box-sizing: border-box;
-}
-
-/* display the value */
-.slider:after {
-  content: attr(data-value);
-  position: absolute;
-  top: -1.5em;
-  width: 2em;
-  line-height:1em;
-  margin-left: -1em;
-  text-align: center;
-}
-
-body { margin: 5% 10%; }
-</style>
-
-<div class="slider"></div>
-<div class="slider"></div>
-<div class="slider"></div>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.css">
+    <!-- AngularJS-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-resource.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-aria.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-messages.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-cloak>
+    <div class="container-fluid">
+        <ng-view></ng-view>
+    </div>
+</body>
+</html>
